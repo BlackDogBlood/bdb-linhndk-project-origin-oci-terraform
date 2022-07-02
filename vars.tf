@@ -1,11 +1,19 @@
-variable "TENANCY_OCID" {}
-variable "USER_OCID" {}
-variable "FINGERPRINT" {}
-variable "PRIVATE_KEY_PATH" {
+variable "tenancy_ocid" {}
+variable "user_ocid" {}
+variable "fingerprint" {}
+variable "private_key_path" {
   default = "./keys/oci.pem"
 }
-variable "REGION" {
+variable "region" {
   default = "ap-singapore-1"
 }
-variable "OCI_UBUNTU_ARM64_IMAGE" {}
-variable "OCI_UBUNTU_AMD64_IMAGE" {}
+variable "oci_ubuntu_arm64_image" {
+  default = "ocid1.image.oc1.ap-singapore-1.aaaaaaaa2ff4yyggrk6coocm546r5tluzmqkf5bjndrkyhtiogd7dc6nzc4a"
+}
+variable "oci_ubuntu_amd64_image" {
+  default = "ocid1.image.oc1.ap-singapore-1.aaaaaaaa5fiuyidchi6v3qmdlmu7qmbgug6d22gvlzmroic3s3d5dqxr76ea"
+}
+variable "vcn_cidr_blocks" {
+  type    = list(string)
+  default = ["10.0.0.0/16"]
+}
