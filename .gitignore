@@ -2,4 +2,4 @@
 /.terraform.lock.hcl
 /keys/
 /.terraform/
-terraform.tfvars
+/terraform.tfvars
