@@ -1,0 +1,5 @@
+TENANCY_OCID = "ocid1.tenancy.oc1..aaaaaaaarurmcs4gv2g4xr5ftinsayzxpbqwfkd52dzglpj5s5p3555icraq"
+USER_OCID = "ocid1.user.oc1..aaaaaaaartckthhtdps5yg4jchroxjy5tzgkrcjrphxlsstjnelwjmkz452q"
+FINGERPRINT = "6d:05:8d:7a:9d:fc:67:d2:4e:2e:b5:a8:b7:76:38:a6"
+OCI_UBUNTU_ARM64_IMAGE = "ocid1.image.oc1.ap-singapore-1.aaaaaaaa2ff4yyggrk6coocm546r5tluzmqkf5bjndrkyhtiogd7dc6nzc4a"
+OCI_UBUNTU_AMD64_IMAGE = "ocid1.image.oc1.ap-singapore-1.aaaaaaaa5fiuyidchi6v3qmdlmu7qmbgug6d22gvlzmroic3s3d5dqxr76ea"
