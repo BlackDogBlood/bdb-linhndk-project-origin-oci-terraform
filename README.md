@@ -25,5 +25,8 @@ Use always-free and trial services for practicing infrastructures.
 * 2x VM.Standard.A1.Flex = 2x k3s worker nodes
 
 ## Installation
-
+1. Create `terraform.tfvars` file
+2. Set values for `tenancy_ocid`, `user_ocid`, `fingerprint`
+3. Run `terraform init`
+4. Run` terraform plan` to see the changes
 ## Notes
