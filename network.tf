@@ -51,10 +51,6 @@ resource "oci_core_security_list" "po_security_list" {
     tcp_options {
       max = 22
       min = 22
-      source_port_range {
-        max = 22
-        min = 22
-      }
     }
   }
 
