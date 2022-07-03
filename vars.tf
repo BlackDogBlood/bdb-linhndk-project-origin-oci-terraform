@@ -4,15 +4,27 @@ variable "fingerprint" {}
 variable "private_key_path" {
   default = "./keys/oci.pem"
 }
+
 variable "region" {
   default = "ap-singapore-1"
 }
+
 variable "oci_ubuntu_arm64_image" {
   default = "ocid1.image.oc1.ap-singapore-1.aaaaaaaa2ff4yyggrk6coocm546r5tluzmqkf5bjndrkyhtiogd7dc6nzc4a"
 }
+
 variable "oci_ubuntu_amd64_image" {
   default = "ocid1.image.oc1.ap-singapore-1.aaaaaaaa5fiuyidchi6v3qmdlmu7qmbgug6d22gvlzmroic3s3d5dqxr76ea"
 }
+
+variable "oci_amd64_shape" {
+  default = "VM.Standard.E2.1.Micro"
+}
+
+variable "oci_arm64_shape" {
+  default = "VM.Standard.A1.Flex"
+}
+
 variable "vcn_cidr_blocks" {
   type    = list(string)
   default = ["10.0.0.0/16"]
