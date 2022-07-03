@@ -14,7 +14,8 @@ variable "oci_ubuntu_amd64_image" {
   default = "ocid1.image.oc1.ap-singapore-1.aaaaaaaa5fiuyidchi6v3qmdlmu7qmbgug6d22gvlzmroic3s3d5dqxr76ea"
 }
 variable "vcn_cidr_blocks" {
-  default = "10.0.0.0/16"
+  type    = list(string)
+  default = ["10.0.0.0/16"]
 }
 
 variable "subnet_cidr_blocks" {
