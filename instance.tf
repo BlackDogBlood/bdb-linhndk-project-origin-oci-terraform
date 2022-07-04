@@ -1,8 +1,8 @@
-resource "oci_core_instance" "po_k3s_master_1" {
+resource "oci_core_instance" "po_controller" {
   availability_domain = data.oci_identity_availability_domain.oci_ad.name
   compartment_id      = var.tenancy_ocid
   shape               = var.oci_amd64_shape
-  display_name = "po_controller"
+  display_name        = "po_controller"
 
   create_vnic_details {
     assign_public_ip = true
@@ -24,11 +24,11 @@ resource "oci_core_instance" "po_k3s_master_1" {
   }
 }
 
-resource "oci_core_instance" "po_k3s_master_2" {
+resource "oci_core_instance" "po_spare" {
   availability_domain = data.oci_identity_availability_domain.oci_ad.name
   compartment_id      = var.tenancy_ocid
   shape               = var.oci_amd64_shape
-  display_name = "po_master"
+  display_name        = "po_spare"
 
   create_vnic_details {
     assign_public_ip = true
@@ -50,11 +50,11 @@ resource "oci_core_instance" "po_k3s_master_2" {
   }
 }
 
-resource "oci_core_instance" "po_k3s_worker_1" {
+resource "oci_core_instance" "po_k3s_master" {
   availability_domain = data.oci_identity_availability_domain.oci_ad.name
   compartment_id      = var.tenancy_ocid
   shape               = var.oci_arm64_shape
-  display_name = "po_worker_1"
+  display_name        = "po_master"
 
   create_vnic_details {
     assign_public_ip = true
@@ -76,11 +76,11 @@ resource "oci_core_instance" "po_k3s_worker_1" {
   }
 }
 
-resource "oci_core_instance" "po_k3s_worker_2" {
+resource "oci_core_instance" "po_k3s_worker" {
   availability_domain = data.oci_identity_availability_domain.oci_ad.name
   compartment_id      = var.tenancy_ocid
   shape               = var.oci_arm64_shape
-  display_name = "po_worker_2"
+  display_name        = "po_worker"
 
   create_vnic_details {
     assign_public_ip = true
