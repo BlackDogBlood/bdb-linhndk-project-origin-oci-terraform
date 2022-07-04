@@ -67,8 +67,8 @@ resource "oci_core_instance" "po_k3s_master" {
   }
 
   shape_config {
-    ocpus         = 2
-    memory_in_gbs = 12
+    ocpus         = 1
+    memory_in_gbs = 6
   }
 
   metadata = {
@@ -93,8 +93,8 @@ resource "oci_core_instance" "po_k3s_worker" {
   }
 
   shape_config {
-    ocpus         = 2
-    memory_in_gbs = 12
+    ocpus         = 3
+    memory_in_gbs = 18
   }
 
   metadata = {
