@@ -55,6 +55,16 @@ resource "oci_core_security_list" "po_security_list" {
   }
 
   ingress_security_rules {
+    protocol    = 6
+    source      = "0.0.0.0/0"
+    description = "allow kube-api from anywhere"
+    tcp_options {
+      max = 6443
+      min = 6443
+    }
+  }
+
+  ingress_security_rules {
     protocol = 1
     source   = "0.0.0.0/0"
     icmp_options {
