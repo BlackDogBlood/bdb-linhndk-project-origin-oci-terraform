@@ -11,7 +11,7 @@ resource "oci_core_dhcp_options" "po_dhcp" {
     type        = "DomainNameServer"
     server_type = "VcnLocalPlusInternet"
   }
-  display_name   = "po_dhcp"
+  display_name = "po_dhcp"
 }
 
 resource "oci_core_internet_gateway" "po_internet_gateway" {
@@ -55,16 +55,6 @@ resource "oci_core_security_list" "po_security_list" {
   }
 
   ingress_security_rules {
-    protocol    = 6
-    source      = "0.0.0.0/0"
-    description = "allow kube-api from anywhere"
-    tcp_options {
-      max = 6443
-      min = 6443
-    }
-  }
-
-  ingress_security_rules {
     protocol = 1
     source   = "0.0.0.0/0"
     icmp_options {
@@ -90,4 +80,48 @@ resource "oci_core_subnet" "po_subnet" {
   dhcp_options_id   = oci_core_dhcp_options.po_dhcp.id
   route_table_id    = oci_core_route_table.po_route_table.id
   security_list_ids = [oci_core_security_list.po_security_list.id]
+}
+
+resource "oci_core_network_security_group" "po_k3s_master" {
+  compartment_id = var.tenancy_ocid
+  vcn_id         = oci_core_vcn.po_vcn.id
+  display_name   = "po_master"
+}
+
+resource "oci_core_network_security_group" "po_k3s_worker" {
+  compartment_id = var.tenancy_ocid
+  vcn_id         = oci_core_vcn.po_vcn.id
+  display_name   = "po_worker"
+}
+
+resource "oci_core_network_security_group" "po_controller" {
+  compartment_id = var.tenancy_ocid
+  vcn_id         = oci_core_vcn.po_vcn.id
+  display_name   = "po_controller"
+}
+
+resource "oci_core_network_security_group_security_rule" "k3s_master_node_kube_api" {
+  network_security_group_id = oci_core_network_security_group.po_k3s_master.id
+  direction                 = "INGRESS"
+  protocol                  = 6
+  source                    = "0.0.0.0/0"
+  tcp_options {
+    destination_port_range {
+      max = 6443
+      min = 6443
+    }
+  }
+}
+
+resource "oci_core_network_security_group_security_rule" "controller" {
+  network_security_group_id = oci_core_network_security_group.po_controller.id
+  direction                 = "INGRESS"
+  protocol                  = 6
+  source                    = "0.0.0.0/0"
+  tcp_options {
+    destination_port_range {
+      max = 80
+      min = 80
+    }
+  }
 }

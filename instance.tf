@@ -7,6 +7,7 @@ resource "oci_core_instance" "po_controller" {
   create_vnic_details {
     assign_public_ip = true
     subnet_id        = oci_core_subnet.po_subnet.id
+    nsg_ids          = [oci_core_network_security_group.po_controller.id]
   }
 
   source_details {
@@ -33,6 +34,7 @@ resource "oci_core_instance" "po_spare" {
   create_vnic_details {
     assign_public_ip = true
     subnet_id        = oci_core_subnet.po_subnet.id
+    nsg_ids          = [oci_core_network_security_group.po_controller.id]
   }
 
   source_details {
@@ -59,6 +61,7 @@ resource "oci_core_instance" "po_k3s_master" {
   create_vnic_details {
     assign_public_ip = true
     subnet_id        = oci_core_subnet.po_subnet.id
+    nsg_ids          = [oci_core_network_security_group.po_k3s_master.id]
   }
 
   source_details {
@@ -85,6 +88,7 @@ resource "oci_core_instance" "po_k3s_worker" {
   create_vnic_details {
     assign_public_ip = true
     subnet_id        = oci_core_subnet.po_subnet.id
+    nsg_ids          = [oci_core_network_security_group.po_k3s_worker.id]
   }
 
   source_details {
